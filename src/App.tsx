@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Card, { CardVariant } from "./components/Card";
+import EventsExample from "./components/EventsExample";
+import {Route, Routes, NavLink} from "react-router-dom";
+import UsersPage from "./components/UsersPage";
+import TodosPage from "./components/TodosPage";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <div style={{width: 350, margin: "0 auto"}}>
+        <NavLink style={{height: 60, width: 150, background: "blue", padding: 10, margin: 20, color: "#fff"}} to="/todos">Todos</NavLink>
+        <NavLink style={{height: 60, width: 150, background: "blue", padding: 10, margin: 20, color: "#fff"}} to="/users">Users</NavLink>
+     </div>   
+       <Routes>
+        <Route path={"/todos"} element={<TodosPage />} />
+        <Route path={"/users"} element={<UsersPage />} />
+      </Routes>
+        <EventsExample />
+      <Card
+        onClick={(num: number) => console.log("Clicked", num)}
+        width="200px"
+        height="200px"
+        variant={CardVariant.primary}
+      >
+        <button>Button</button>
+      </Card>
+      </>
   );
-}
+};
 
 export default App;
